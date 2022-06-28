@@ -1,5 +1,5 @@
 import React from 'react'
-import { ethers, Signer } from 'ethers'
+import { ethers } from 'ethers'
 import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
 
@@ -41,7 +41,7 @@ function App() {
         );
         const tokenContractName = await (window as any).tokenContract.name();
         const stakingContractName = await (window as any).stakingContract;
-        console.log(stakingContractName);
+        console.log(tokenContractName, stakingContractName);
       }
     }
 
