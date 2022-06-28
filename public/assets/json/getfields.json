@@ -1,0 +1,116 @@
+{
+	"GetFields": [
+		{
+			"Field": {
+				"Value": "123456789",
+				"FieldName": "ABN",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "ABC Corp",
+				"FieldName": "VendorName",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "INV-1234",
+				"FieldName": "InvoiceNumber",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "21/08/2021",
+				"FieldName": "InvoiceDate",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "08/09/2021",
+				"FieldName": "DueDate",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "PO123456",
+				"FieldName": "PurchaseOrder",
+				"Confident":"false"
+			}
+		},
+		{
+			"Field": {
+				"Value": "10.35",
+				"FieldName": "Subtotal",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "0.00",
+				"FieldName": "Discount",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "0.00",
+				"FieldName": "Postage",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "1.03",
+				"FieldName": "TaxAmount",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "11.38",
+				"FieldName": "Total",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "14.38",
+				"FieldName": "TotalPastDueDate",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "000-123",
+				"FieldName": "BankBSB",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "123456",
+				"FieldName": "BankAccountNumber",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "30 days",
+				"FieldName": "PaymentTerm",
+				"Confident":"true"
+			}
+		},
+		{
+			"Field": {
+				"Value": "info@abc.corp.com",
+				"FieldName": "RemittanceEmail",
+				"Confident":"true"
+			}
+		}
+	]
+}

@@ -1,0 +1,116 @@
+{
+	"AddFields": [
+		{
+			"Field": {
+				"DisplayName": "Tax Id",
+				"FieldName": "ABN",
+				"Required":"false"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Vendor Name",
+				"FieldName": "VendorName",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Invoice Number",
+				"FieldName": "InvoiceNumber",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Invoice Date",
+				"FieldName": "InvoiceDate",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Due Date",
+				"FieldName": "DueDate",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Purchase Order",
+				"FieldName": "PurchaseOrder",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Subtotal",
+				"FieldName": "Subtotal",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Discount",
+				"FieldName": "Discount",
+				"Required":"false"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Postage",
+				"FieldName": "Postage",
+				"Required":"false"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Tax Amount",
+				"FieldName": "TaxAmount",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Total",
+				"FieldName": "Total",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Total (past Due Date)",
+				"FieldName": "TotalPastDueDate",
+				"Required":"false"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Bank BSB",
+				"FieldName": "BankBSB",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Bank Account",
+				"FieldName": "BankAccountNumber",
+				"Required":"true"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Payment Term",
+				"FieldName": "PaymentTerm",
+				"Required":"false"
+			}
+		},
+		{
+			"Field": {
+				"DisplayName": "Remittance Email",
+				"FieldName": "RemittanceEmail",
+				"Required":"false"
+			}
+		}
+	]
+}
