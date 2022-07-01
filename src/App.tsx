@@ -20,6 +20,12 @@ function App() {
   })
   React.useEffect(() => {
     checkWalletIsConnected()
+    setStakingInfo({
+      startTime:'2022.04.03 15:12:12',
+      amount:100 + 'IGRL',
+      option:'Flexible',
+      expireTIme:''
+    })
   }, [])
   const checkWalletIsConnected = async () => {
     const { ethereum } = window as any
