@@ -2,6 +2,7 @@ import React from 'react'
 import { ethers } from 'ethers'
 import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
+import Logo from './assets/iamges/logo.jpg'
 
 const tokenAddress:string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C';
 const stakingAddress:string = '0xf7f903fD2EE71Ce6D8473f5a46b7465EA834D79f';
@@ -11,7 +12,12 @@ function App() {
   const [option, setOption] = React.useState<number>(0);
   const [amount, setAmount] = React.useState<number>(0);
   const [caption, setCaption] = React.useState<string>('Flexible Mode - 10%')
-  
+  const [stakingInfo, setStakingInfo] = React.useState<any>({
+    startTime:'2022.04.03 15:12:12',
+    amount:100 + 'IGRL',
+    option:'Flexible',
+    expireTIme:''
+  })
   React.useEffect(() => {
     checkWalletIsConnected()
   }, [])
@@ -86,28 +92,61 @@ function App() {
     console.log('success')
   }
   return (
-    <div className="d-flex flex-column px-5">
-      <div className="mt-5 d-flex flex-warp justify-content-end">
-        <span className="d-flex align-items-center">
-          <div>{currentAccount}</div>
-        </span>
-        <button className="btn btn-danger mr-5" onClick={connectWalletHandler}>
-          Connect Wallet
-        </button>
+    <div>
+      <div className="d-flex flex-warp justify-content-between py-2 px-5 bar">
+        <div>
+          <img src={Logo} alt="logo" width={80} height={80} />
+        </div>
+        <div className='d-flex'>
+          <span className="d-flex align-items-center">
+            <div>{currentAccount}</div>
+          </span>
+          <button className="btn btn-grad mr-5" onClick={connectWalletHandler}>
+            Connect Wallet
+          </button>
+        </div>
       </div>
+      <div className="d-flex flex-column px-5">
+      
       <div className="mt-5 d-flex justify-content-around">
-        <button className="btn btn-primary mr-5" onClick={()=>changeOption(0, 'Flexible Mode - 10%')}>Flexible Mode - 10%</button>
-        <button className="btn btn-info mr-5" onClick={()=>changeOption(1, '30 days - 25%')}>30 days - 25%</button>
-        <button className="btn btn-warning mr-5" onClick={()=>changeOption(2, '90 days - 40%')}>90 days - 40%</button>
-        <button className="btn btn-danger mr-5" onClick={()=>changeOption(3, '180 days - 70%')}>180 days - 70%</button>
-        <button className="btn btn-secondary mr-5" onClick={()=>changeOption(4, '360 days - 90%')}>360 days - 90%</button>
+        <button className="btn btn-grad mr-5" onClick={()=>changeOption(0, 'Flexible Mode - 10%')}>Flexible Mode - 10%</button>
+        <button className="btn btn-grad mr-5" onClick={()=>changeOption(1, '30 days - 25%')}>30 days - 25%</button>
+        <button className="btn btn-grad mr-5" onClick={()=>changeOption(2, '90 days - 40%')}>90 days - 40%</button>
+        <button className="btn btn-grad mr-5" onClick={()=>changeOption(3, '180 days - 70%')}>180 days - 70%</button>
+        <button className="btn btn-grad mr-5" onClick={()=>changeOption(4, '360 days - 90%')}>360 days - 90%</button>
       </div>
       <div className="mt-5 d-flex justify-content-around align-items-center">
         <span className=''>{caption}</span>
         <input type="number" className='form-control w-50 mr-5' placeholder='Deposit amount' onChange={(e)=>changeAmount(e.target.value)} />
-        <button className="btn btn-primary mr-5" onClick={deposit}>Deposit</button>
+        <button className="btn btn-grad mr-5" onClick={deposit}>Deposit</button>
+      </div>
+      <div className="mt-5 d-flex justify-content-around align-items-center">
+      <table className="table">
+    <thead>
+      <tr>
+        <th>Time of Stake</th>
+        <th>Amount</th>
+        <th>What option</th>
+        <th>Expires</th>
+        <th>Unstake</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{stakingInfo.startTime}</td>
+        <td>{stakingInfo.amount}</td>
+        <td>{stakingInfo.option}</td>
+        <td>{stakingInfo.expireTime}</td>
+        <td>
+          <button className='btn btn-grad'>Unstake</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
       </div>
     </div>
+    </div>
+    
   )
 }
 

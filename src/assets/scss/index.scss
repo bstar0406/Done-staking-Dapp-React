@@ -12,3 +12,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.btn-green{
+  background-color: rgb(104, 190, 69) !important;
+  color:white !important;
+}
+         
+.btn-grad {
+  background-image: linear-gradient(to right, #F4D03F 0%, #16A085  51%, #F4D03F  100%) !important;
+  margin: 10px !important;
+  padding: 10px 20px !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  transition: 0.5s !important;
+  background-size: 200% auto !important;
+  color: white !important;            
+  box-shadow: 0 0 20px #eee !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+
+.btn-grad:hover {
+  background-position: right center !important; /* change the direction of the change here */
+  color: #fff !important;
+  text-decoration: none !important;
+}
+td{
+  line-height: 60px;
+}
+.bar{
+  background-color: #ffffff6e;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.068);
+}
