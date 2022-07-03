@@ -21,44 +21,45 @@ function App() {
     expireTime: '-',
   })
   React.useEffect(() => {
+    const checkWalletIsConnected = async () => {
+      const { ethereum } = window as any
+  
+      if (!ethereum) {
+        return
+      } else {
+        if ((window as any).ethereum) {
+          (window as any).ethereum.send('eth_requestAccounts');
+          (window as any).provider = new ethers.providers.Web3Provider(
+            (window as any).ethereum,
+          );
+          (window as any).signer = (window as any).provider.getSigner();
+          (window as any).tokenContract = new ethers.Contract(
+            tokenAddress,
+            TokenContract,
+            (window as any).signer,
+          );
+          (window as any).stakingContract = new ethers.Contract(
+            stakingAddress,
+            StakingContract,
+            (window as any).signer,
+          )
+        }
+      }
+      await setInfo();
+      const accounts = await ethereum.request({ method: 'eth_accounts' })
+  
+      if (accounts.length !== 0) {
+        const account = accounts[0]
+        setCurrentAccount(account)
+      } 
+    }
     checkWalletIsConnected()
   },[])
 
   React.useEffect(()=>{
     console.log('changed')
   },[balance, stakingInfo])
-  const checkWalletIsConnected = async () => {
-    const { ethereum } = window as any
-
-    if (!ethereum) {
-      return
-    } else {
-      if ((window as any).ethereum) {
-        ;(window as any).ethereum.send('eth_requestAccounts')
-        ;(window as any).provider = new ethers.providers.Web3Provider(
-          (window as any).ethereum,
-        )
-        ;(window as any).signer = (window as any).provider.getSigner()
-        ;(window as any).tokenContract = new ethers.Contract(
-          tokenAddress,
-          TokenContract,
-          (window as any).signer,
-        )
-        ;(window as any).stakingContract = new ethers.Contract(
-          stakingAddress,
-          StakingContract,
-          (window as any).signer,
-        )
-      }
-    }
-    await setInfo();
-    const accounts = await ethereum.request({ method: 'eth_accounts' })
-
-    if (accounts.length !== 0) {
-      const account = accounts[0]
-      setCurrentAccount(account)
-    } 
-  }
+  
 
   const setInfo = async()=>{
     const { ethereum } = window as any
