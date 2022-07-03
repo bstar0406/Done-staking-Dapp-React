@@ -268,13 +268,7 @@
         "type": "function"
     },
     {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "user",
-                "type": "address"
-            }
-        ],
+        "inputs": [],
         "name": "getStakingInfo",
         "outputs": [
             {
