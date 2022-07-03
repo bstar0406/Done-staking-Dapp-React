@@ -15,14 +15,14 @@ function App() {
   const [caption, setCaption] = React.useState<string>('Flexible Mode - 10%')
   const [balance, setBalance] = React.useState<string>('0 IGRL')
   const [stakingInfo, setStakingInfo] = React.useState<any>({
-    startTime: '2022.04.03 15:12:12',
-    balance: 100 + 'IGRL',
+    startTime: '-',
+    balance: '0 IGRL',
     option: 'Flexible',
-    expireTime: '',
+    expireTime: '-',
   })
   React.useEffect(() => {
     checkWalletIsConnected()
-  })
+  },[])
 
   React.useEffect(()=>{
     console.log('changed')
@@ -134,8 +134,13 @@ function App() {
     setAmount(parseInt(val))
   }
   const deposit = async () => {
-    await (window as any).tokenContract.approve(stakingAddress, amount)
-    await (window as any).stakingContract.deposit(amount, option)
+    if(balance === '0 IGRL'){
+      await (window as any).tokenContract.approve(stakingAddress, amount)
+      await (window as any).stakingContract.deposit(amount, option)
+      alert('success');
+    }else{
+      alert("You've already staked")
+    }
     
   }
   const unstake = async () => {
