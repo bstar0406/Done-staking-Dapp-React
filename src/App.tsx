@@ -22,7 +22,7 @@ function App() {
   })
   React.useEffect(() => {
     checkWalletIsConnected()
-  }, [])
+  })
 
   React.useEffect(()=>{
     console.log('changed')
