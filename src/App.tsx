@@ -52,6 +52,12 @@ function App() {
         const account = accounts[0]
         setCurrentAccount(account)
       } 
+      // (window as any).stakingContract.on("DepositEvent", (oldValue:any, newValue:any, event:any) => {
+      //   console.log(oldValue, newValue);
+      // })
+      // (window as any).stakingContract.on("WithdrawEvent", (oldValue:any, newValue:any, event:any) => {
+      //   console.log(oldValue, newValue);
+      // })
     }
     checkWalletIsConnected()
   },[])
@@ -67,6 +73,7 @@ function App() {
     const stakingInfo = await (window as any).stakingContract.getStakingInfo(
       accounts[0],
     )
+    console.log(stakingInfo)
     const startTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000);
     const balance = parseInt(stakingInfo.balance);
     const option = parseInt(stakingInfo.option);
@@ -95,7 +102,7 @@ function App() {
       default:
         break
     }
-    let realTime=startTime.getFullYear() +"."+(startTime.getMonth()+1)%12+"."+startTime.getDate()+"   "+startTime.getHours().toString(2)+"."+startTime.getMinutes()+"."+startTime.getSeconds();
+    let realTime=padStart(startTime.getUTCDate()).toString()+"."+padStart((startTime.getUTCMonth()+1)%12)+"."+startTime.getUTCFullYear() +" - "+padStart(startTime.getUTCHours()).toString()+":"+padStart(startTime.getUTCMinutes()) + " UTC";
     if(balance === 0){
       expireTime = '-';
       optionString ='-';
@@ -109,6 +116,11 @@ function App() {
       option: optionString?.toString(),
       expireTime: expireTime?.toString()
     })
+  }
+
+  const padStart = (str:number) =>{
+    let temp = str <= 9 ? '0' + str : str;
+    return temp;
   }
 
   const connectWalletHandler = async () => {
@@ -139,6 +151,7 @@ function App() {
       await (window as any).tokenContract.approve(stakingAddress, amount)
       await (window as any).stakingContract.deposit(amount, option)
       alert('success');
+      setInfo();
     }else{
       alert("You've already staked")
     }
@@ -209,7 +222,7 @@ function App() {
           </button>
         </div>
         <div className="mt-5 d-flex justify-content-around align-items-center">
-          <table className="table">
+          <table className="table mt-5">
             <thead>
               <tr>
                 <th>Time of Stake</th>
@@ -220,7 +233,7 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              {balance !=='0 IGRL' &&<tr>
                 <td>{stakingInfo.startTime}</td>
                 <td>{balance}</td>
                 <td>{stakingInfo.option}</td>
@@ -229,7 +242,7 @@ function App() {
                   {stakingInfo.option==='Flexible' && <button className="btn btn-grad" onClick={()=>unstake()}>Unstake</button>}
                   {stakingInfo.option!=='Flexible' && 'Unstake automatically'}
                 </td>
-              </tr>
+              </tr>}
             </tbody>
           </table>
         </div>
