@@ -4,10 +4,12 @@ import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
 import Logo from './assets/iamges/logo.jpg'
 
-const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C'
+// const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C'
+const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1'
 // const stakingAddress:string = '0xf7f903fD2EE71Ce6D8473f5a46b7465EA834D79f';
 // const stakingAddress:string = '0x8Ca103877752de8E3f96438BAC9e4ecbf2c8221f';
-const stakingAddress: string = '0xfE96906F64cEc6A991233efBe0bD92454C80518f'
+// const stakingAddress: string = '0xfE96906F64cEc6A991233efBe0bD92454C80518f'
+const stakingAddress: string = '0x35a18a65f36F153FE41fA5070846Cd100dDFB151' //mainnet
 function App() {
   const [currentAccount, setCurrentAccount] = React.useState<string>('')
   const [option, setOption] = React.useState<number>(0)
@@ -45,35 +47,10 @@ function App() {
           )
         }
       }
-      await setInfo();
-      const accounts = await ethereum.request({ method: 'eth_accounts' })
-  
-      if (accounts.length !== 0) {
-        const account = accounts[0]
-        setCurrentAccount(account)
-      } 
-      // (window as any).stakingContract.on("DepositEvent", (oldValue:any, newValue:any, event:any) => {
-      //   console.log(oldValue, newValue);
-      // })
-      // (window as any).stakingContract.on("WithdrawEvent", (oldValue:any, newValue:any, event:any) => {
-      //   console.log(oldValue, newValue);
-      // })
-    }
-    checkWalletIsConnected()
-  },[])
-
-  React.useEffect(()=>{
-    console.log('changed')
-  },[balance, stakingInfo])
-  
-
-  const setInfo = async()=>{
-    const { ethereum } = window as any
     const accounts = await ethereum.request({ method: 'eth_accounts' })
     const stakingInfo = await (window as any).stakingContract.getStakingInfo(
       accounts[0],
     )
-    console.log(stakingInfo)
     const startTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000);
     const balance = parseInt(stakingInfo.balance);
     const option = parseInt(stakingInfo.option);
@@ -116,6 +93,75 @@ function App() {
       option: optionString?.toString(),
       expireTime: expireTime?.toString()
     })
+  
+      if (accounts.length !== 0) {
+        const account = accounts[0]
+        setCurrentAccount(account)
+      } 
+      (window as any).stakingContract.on("DepositEvent", (oldValue:any, newValue:any, event:any) => {
+        // setInfo()
+      })
+      // (window as any).stakingContract.on("WithdrawEvent", (oldValue:any, newValue:any, event:any) => {
+
+      // })
+    }
+    checkWalletIsConnected()
+  },[])
+
+  React.useEffect(()=>{
+    console.log('changed')
+  },[balance, stakingInfo])
+  
+
+  const setInfo = async ()=>{
+    const { ethereum } = window as any
+    const accounts = await ethereum.request({ method: 'eth_accounts' })
+    const stakingInfo = await (window as any).stakingContract.getStakingInfo(
+      accounts[0],
+    )
+    const startTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000);
+    const balance = parseInt(stakingInfo.balance);
+    const option = parseInt(stakingInfo.option);
+    let optionString, expireTime;
+    switch (option) {
+      case 0:
+        optionString = 'Flexible'
+        expireTime = 'None'
+        break
+      case 1:
+        optionString = '30 days'
+        expireTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000 + 1000*3600*24*30)
+        break
+      case 2:
+        optionString = '90 days'
+        expireTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000 + 1000*3600*24*90)
+        break
+      case 3:
+        optionString = '180 days'
+        expireTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000 + 1000*3600*24*180)
+        break
+      case 4:
+        optionString = '360 days'
+        expireTime = new Date(parseInt(stakingInfo.startTime, 10) * 1000 + 1000*3600*24*360)
+        break
+      default:
+        break
+    }
+    let realTime=padStart(startTime.getUTCDate()).toString()+"."+padStart((startTime.getUTCMonth()+1)%12)+"."+startTime.getUTCFullYear() +" - "+padStart(startTime.getUTCHours()).toString()+":"+padStart(startTime.getUTCMinutes()) + " UTC";
+    if(balance === 0){
+      expireTime = '-';
+      optionString ='-';
+      realTime='-'
+      
+    }
+    setBalance(balance.toString() + ' IGRL');
+    let temp =stakingInfo;
+    console.log(temp)
+    temp.startTime = realTime;
+    temp.balance =  balance.toString() + ' IGRL';
+    temp.option= optionString?.toString();
+    temp.expireTime= expireTime?.toString()
+    setStakingInfo(temp)
   }
 
   const padStart = (str:number) =>{
@@ -159,6 +205,7 @@ function App() {
   }
   const unstake = async () => {
     await (window as any).stakingContract.withdraw()
+    alert('success');
     setInfo();
   }
   return (
@@ -233,9 +280,9 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {balance !=='0 IGRL' &&<tr>
+              {stakingInfo.balance !=='0 IGRL' &&<tr>
                 <td>{stakingInfo.startTime}</td>
-                <td>{balance}</td>
+                <td>{stakingInfo.balance}</td>
                 <td>{stakingInfo.option}</td>
                 <td>{stakingInfo.expireTime}</td>
                 <td>
