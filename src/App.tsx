@@ -4,13 +4,13 @@ import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
 import Logo from './assets/iamges/logo.jpg'
 
-// const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C'
-const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1'
+const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C'
+// const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1'
 
 // const stakingAddress:string = '0xf7f903fD2EE71Ce6D8473f5a46b7465EA834D79f';
 // const stakingAddress:string = '0x8Ca103877752de8E3f96438BAC9e4ecbf2c8221f';
 // const stakingAddress: string = '0xfE96906F64cEc6A991233efBe0bD92454C80518f'
-const stakingAddress: string = '0x35a18a65f36F153FE41fA5070846Cd100dDFB151' //mainnet
+const stakingAddress: string = '0xF396Ca1FC074276dCeA6970b74E24Cc31f3714ac'
 function App() {
   const [currentAccount, setCurrentAccount] = React.useState<string>('')
   const [option, setOption] = React.useState<number>(0)
@@ -195,8 +195,8 @@ function App() {
   }
   const deposit = async () => {
     if(balance === '0 IGRL'){
-      await (window as any).tokenContract.approve(stakingAddress, amount*10**9)
-      await (window as any).stakingContract.deposit(amount*10**9, option)
+      await (window as any).tokenContract.approve(stakingAddress, amount*Math.pow(10,9))
+      await (window as any).stakingContract.deposit(amount*Math.pow(10,9), option)
       alert('success');
       setInfo();
     }else{
