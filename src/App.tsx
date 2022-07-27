@@ -4,13 +4,11 @@ import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
 import Logo from './assets/iamges/logo.jpg'
 
-const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C'
-// const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1'
+// const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C' //test token
+const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1' // main token
 
-// const stakingAddress:string = '0xf7f903fD2EE71Ce6D8473f5a46b7465EA834D79f';
-// const stakingAddress:string = '0x8Ca103877752de8E3f96438BAC9e4ecbf2c8221f';
-// const stakingAddress: string = '0xfE96906F64cEc6A991233efBe0bD92454C80518f'
-const stakingAddress: string = '0xa0d8780C32Ba63748951a6Ef5D7f43F7CBd79c58'
+// const stakingAddress: string = '0xa0d8780C32Ba63748951a6Ef5D7f43F7CBd79c58' //test staking
+const stakingAddress: string = '0x6Eb654F41147Ac1FF41BE0223A9C1E0CC390f35a' //test staking
 function App() {
   const [currentAccount, setCurrentAccount] = React.useState<string>('')
   const [option, setOption] = React.useState<number>(0)
