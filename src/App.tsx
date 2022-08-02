@@ -4,11 +4,12 @@ import TokenContract from './contract/token.json'
 import StakingContract from './contract/staking.json'
 import Logo from './assets/iamges/logo.jpg'
 
-const tokenAddress: string = '0x69efB039728013bB9f6Ab13015621f74C544ED3C' //test token
+const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1' //main token
 // const tokenAddress: string = '0x85469cB22c5e8A063106C987c36C7587810E4bF1' // main token
 
 // const stakingAddress: string = '0xa0d8780C32Ba63748951a6Ef5D7f43F7CBd79c58' //test staking
-const stakingAddress: string = '0x522Acd4446B3a76a38859c64aCD1AD9fe470F6A5' //main staking
+const stakingAddress: string = '0x3E54e556d4054C9A31A632545746D1b3CAE4de83' //main staking
+
 function App() {
   const [currentAccount, setCurrentAccount] = React.useState<string>('')
   const [option, setOption] = React.useState<number>(0)
@@ -107,11 +108,6 @@ function App() {
     checkWalletIsConnected()
   },[])
 
-  React.useEffect(()=>{
-    console.log('changed')
-  },[balance, stakingInfo])
-  
-
   const setInfo = async ()=>{
     const { ethereum } = window as any
     const accounts = await ethereum.request({ method: 'eth_accounts' })
@@ -207,6 +203,8 @@ function App() {
     alert('success');
     setInfo();
   }
+
+
   return (
     <div>
       <div className="d-flex flex-warp justify-content-between py-2 px-5 bar">
