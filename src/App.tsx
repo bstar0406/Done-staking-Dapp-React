@@ -25,7 +25,6 @@ function App() {
   React.useEffect(() => {
     const checkWalletIsConnected = async () => {
       const { ethereum } = window as any
-  
       if (!ethereum) {
         return
       } else {
