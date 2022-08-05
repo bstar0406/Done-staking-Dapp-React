@@ -229,27 +229,27 @@ function App() {
           </button>
           <button
             className="btn btn-grad mr-5"
-            onClick={() => changeOption(1, '30 days - 25%')}
+            onClick={() => changeOption(1, '30 days - 15%')}
           >
-            30 days - 25%
+            30 days - 15%
           </button>
           <button
             className="btn btn-grad mr-5"
-            onClick={() => changeOption(2, '90 days - 40%')}
+            onClick={() => changeOption(2, '90 days - 25%')}
           >
-            90 days - 40%
+            90 days - 25%
           </button>
           <button
             className="btn btn-grad mr-5"
-            onClick={() => changeOption(3, '180 days - 70%')}
+            onClick={() => changeOption(3, '180 days - 35%')}
           >
-            180 days - 70%
+            180 days - 35%
           </button>
           <button
             className="btn btn-grad mr-5"
-            onClick={() => changeOption(4, '360 days - 90%')}
+            onClick={() => changeOption(4, '360 days - 50%')}
           >
-            360 days - 90%
+            360 days - 50%
           </button>
         </div>
         <div className="mt-5 d-flex justify-content-around align-items-center">
